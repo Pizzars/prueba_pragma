@@ -60,7 +60,7 @@ class _SignUpScreenView extends StatelessWidget {
               const SpaceApp(),
               InputContainer(
                 label: "Contraseña",
-                hintText: "Ingresa tu contrasela",
+                hintText: "Ingresa tu contraseña",
                 showHidePassword: true,
                 obscureText: true,
                 controller: password,

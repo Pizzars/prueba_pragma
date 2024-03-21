@@ -15,8 +15,8 @@ class BooksCubit extends Cubit<BooksState> {
     bool darkMode = false
   }) : super( const BooksState());
 
-  void setError(String error){
-    emit (state.copyWith(error: error));
+  void setError(String? error, {bool reset = false}){
+    emit (state.copyWith(error: error, resetError: reset));
   }
 
   void setSearch(String? search){
@@ -39,7 +39,7 @@ class BooksCubit extends Cubit<BooksState> {
       emit (state.copyWith(searches: searches));
     }
     catch(e) {
-      emit (state.copyWith(load: true, error: e.toString()));
+      emit (state.copyWith(load: false, error: e.toString().replaceAll("Exception: ", "")));
     }
   }
 
@@ -51,7 +51,7 @@ class BooksCubit extends Cubit<BooksState> {
       emit (state.copyWith(searches: searches));
     }
     catch(e) {
-      emit (state.copyWith(error: e.toString()));
+      emit (state.copyWith(error: e.toString().replaceAll("Exception: ", "")));
     }
   }
 
@@ -70,7 +70,7 @@ class BooksCubit extends Cubit<BooksState> {
       getSearches(refresh: true);
     }
     catch(e) {
-      emit (state.copyWith(load: true, error: e.toString()));
+      emit (state.copyWith(load: false, error: e.toString().replaceAll("Exception: ", "")));
     }
 
   }

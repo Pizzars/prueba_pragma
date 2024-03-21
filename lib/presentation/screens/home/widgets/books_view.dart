@@ -3,9 +3,12 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prueba_inlaze/config/config.dart';
+import 'package:prueba_inlaze/presentation/screens/widgets/space_app.dart';
 import 'package:prueba_inlaze/presentation/screens/widgets/texts/title_small_app.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../blocs/books/books_cubit.dart';
+import '../../widgets/buttons/button_app.dart';
 import '../../widgets/texts/TextApp.dart';
 
 class BooksView extends StatefulWidget {
@@ -39,7 +42,7 @@ class _BooksViewState extends State<BooksView>
     return LayoutBuilder(
       builder: (_, constraints) {
         final h = constraints.maxHeight;
-        final w = constraints.maxWidth;
+        // final w = constraints.maxWidth;
 
         return BlocBuilder<BooksCubit, BooksState>(
             builder: (context, state){
@@ -115,7 +118,7 @@ class _BooksViewState extends State<BooksView>
                   const Spacer(),
                   //* Movie Details
                   SizedBox(
-                    height: h * 0.25,
+                    height: h * 0.3,
                     child: PageView.builder(
                       controller: _movieDetailPageController,
                       physics: const NeverScrollableScrollPhysics(),
@@ -125,7 +128,7 @@ class _BooksViewState extends State<BooksView>
                         final opacity = (index - _movieDetailsPage).clamp(0.0, 1.0);
 
                         return Padding(
-                          padding: EdgeInsets.symmetric(horizontal: w * .1),
+                          padding: const EdgeInsets.symmetric(horizontal: 0),
                           child: Opacity(
                             opacity: 1 - opacity,
                             child: Column(
@@ -135,7 +138,7 @@ class _BooksViewState extends State<BooksView>
                                   tag: book.title,
                                   child: Material(
                                     type: MaterialType.transparency,
-                                    child: TitleSmall(text: book.title.toUpperCase(), color: ColorsApp.primary,),
+                                    child: TitleSmall(text: book.title.toUpperCase(), color: ColorsApp.primary, overflow: true,),
                                   ),
                                 ),
                                 ValueListenableBuilder<bool>(
@@ -143,7 +146,28 @@ class _BooksViewState extends State<BooksView>
                                   builder: (_, value, __) {
                                     return Visibility(
                                       visible: value,
-                                      child: TextApp(text: book.subtitle),
+                                      child: Column(
+                                        children: [
+                                          TextApp(text: book.subtitle, overflow: true,),
+                                          const SpaceApp(),
+                                          Center(
+                                            child: Row(
+                                              children: [
+                                                TitleSmall(text: 'Precio: ${book.price}', color: ColorsApp.primary,),
+                                                const SpaceApp(space: 2, horizontal: true,),
+                                                Flexible(
+                                                  child: ButtonApp(
+                                                    text: 'Comprar',
+                                                    onPressed: (){
+                                                      launchUrl(Uri.parse(book.url), mode: LaunchMode.externalApplication);
+                                                    },
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     );
                                   },
                                 ),

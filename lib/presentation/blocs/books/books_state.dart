@@ -14,16 +14,18 @@ class BooksState extends Equatable {
   List<Object?> get props => [ load, error, books, searches, news, search ];
 
   BooksState copyWith({
-  bool? load,
-  String? error,
-  List<BookModel>? books,
-  List<BookModel>? news,
-  List<SearchModel>? searches,
-  String? search, bool searchReset = false,
+    bool? load,
+    String? error,
+    List<BookModel>? books,
+    List<BookModel>? news,
+    List<SearchModel>? searches,
+    String? search,
+    bool searchReset = false,
+    bool resetError = false,
   }){
     return BooksState(
       load: load ?? this.load,
-      error: error ?? this.error,
+      error: resetError ? null : error ?? this.error,
       books: searchReset ? null : books ?? this.books,
       news: news ?? this.news,
       searches: searches ?? this.searches,

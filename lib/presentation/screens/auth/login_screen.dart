@@ -54,7 +54,7 @@ class _LoginScreenView extends StatelessWidget {
               const SpaceApp(space: 3,),
               InputContainer(label: "Usuario", hintText: "Ingresa tu usuario", controller: user,),
               const SpaceApp(),
-              InputContainer(label: "Contraseña", hintText: "Ingresa tu contrasela", showHidePassword: true, obscureText: true, controller: password,),
+              InputContainer(label: "Contraseña", hintText: "Ingresa tu contraseña", showHidePassword: true, obscureText: true, controller: password,),
               BlocBuilder<LoginCubit, LoginState>(
                 builder: (context, state){
                   return Column(

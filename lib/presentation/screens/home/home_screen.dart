@@ -5,6 +5,7 @@ import 'package:prueba_inlaze/presentation/blocs/blocs.dart';
 import 'package:prueba_inlaze/presentation/screens/home/widgets/books_view.dart';
 import 'package:prueba_inlaze/presentation/screens/home/widgets/search_view.dart';
 import 'package:prueba_inlaze/presentation/screens/widgets/base_screen.dart';
+import 'package:prueba_inlaze/presentation/screens/widgets/buttons/button_app.dart';
 import 'package:prueba_inlaze/presentation/screens/widgets/space_app.dart';
 import 'package:prueba_inlaze/presentation/screens/widgets/texts/TextApp.dart';
 import 'package:prueba_inlaze/presentation/screens/widgets/texts/title_small_app.dart';
@@ -75,16 +76,43 @@ class _HomeScreenView extends StatelessWidget {
         builder: (_, __) {
           return BlocBuilder<BooksCubit, BooksState>(
             builder: (context, state){
-              if(state.load){
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
+              getView(){
+                if(state.load){
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                if(state.error != null){
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.search_off, color: ColorsApp.primary, size: 50,),
+                      const SpaceApp(space: 2,),
+                      TitleSmall(text: state.error!),
+                      const SpaceApp(space: 2,),
+                      ButtonApp(text: "Volver a intentar", onPressed: (){
+                        context.read<BooksCubit>().setError(null, reset: true);
+                      })
+                    ],
+                  );
+                }
+                final books = state.books ?? state.news ?? [];
+                if(books.isEmpty){
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Icon(Icons.search_off, color: ColorsApp.primary, size: 50,),
+                      SpaceApp(space: 2,),
+                      TitleSmall(text: "No encontramos resultados", color: ColorsApp.primary,)
+                    ],
+                  );
+                }
+
+                return const BooksView();
               }
-              if(state.error != null){
-                return Center(
-                  child: TitleSmall(text: state.error!),
-                );
-              }
+
               return Column(
                 children: [
                   Hero(
@@ -113,7 +141,7 @@ class _HomeScreenView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Flexible(child: BooksView())
+                  Flexible(child: getView() ),
                 ],
               );
             },

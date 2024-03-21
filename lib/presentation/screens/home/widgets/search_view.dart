@@ -31,7 +31,7 @@ class SearchView extends StatelessWidget {
           child: Container(
             height: double.infinity,
             width: double.infinity,
-            color: ColorsApp.tertiary.withOpacity(0.3),
+            color: ColorsApp.tertiary.withOpacity(0.8),
             child: Column(
               children: [
                 const SpaceApp(space: 2,),

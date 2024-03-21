@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:prueba_inlaze/services/connectivity.dart';
 
 class ApiService {
 
@@ -8,7 +9,7 @@ class ApiService {
 
   Future<dynamic> getData(String route) async {
     try {
-
+      await checkConnection();
       // Realiza la solicitud GET
       Response response = await _dio.get('$path$route');
 

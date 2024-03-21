@@ -16,6 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
   double size = 0;
 
   void _verificationUser() async {
+
     Future.delayed(Duration.zero, () {
       setState(() {
         size = 60;
