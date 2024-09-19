@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:prueba_inlaze/config/config.dart';
-import 'package:prueba_inlaze/config/helpers/hero_tags.dart';
-import 'package:prueba_inlaze/data/user_preferences.dart';
+import 'package:prueba_data_center/config/config.dart';
+import 'package:prueba_data_center/config/helpers/hero_tags.dart';
+import 'package:prueba_data_center/data/user_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -27,7 +27,8 @@ class _SplashScreenState extends State<SplashScreen> {
     final goHome = user != null;
 
     Future.delayed(const Duration(seconds: 1), (){
-      context.replace(goHome ? Routes.home : Routes.login);
+      // context.replace(goHome ? Routes.home : Routes.login);
+      context.replace(goHome ? Routes.home : Routes.home);
     });
   }
 
@@ -40,9 +41,10 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     final responsive = Responsive(context);
-    return SizedBox(
+    return Container(
       height: responsive.screenHeight(),
       width: responsive.screenWidth(),
+      color: ColorsApp.tertiary,
       child: Center(
         child: Hero(
           tag: HeroTags.logo,

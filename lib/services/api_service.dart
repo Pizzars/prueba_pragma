@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:prueba_inlaze/services/connectivity.dart';
+import 'package:prueba_data_center/services/connectivity.dart';
 
 class ApiService {
 

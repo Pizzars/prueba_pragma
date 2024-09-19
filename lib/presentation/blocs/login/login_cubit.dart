@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:prueba_inlaze/data/user_preferences.dart';
-import 'package:prueba_inlaze/domain/models/user_model.dart';
-import 'package:prueba_inlaze/presenters/auth/login_presenter.dart';
+import 'package:prueba_data_center/data/user_preferences.dart';
+import 'package:prueba_data_center/domain/models/user_model.dart';
+import 'package:prueba_data_center/presenters/auth/login_presenter.dart';
 
 import '../../../config/router/app_router.dart';
 

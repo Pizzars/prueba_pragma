@@ -1,6 +1,6 @@
-import 'package:prueba_inlaze/domain/models/book_model.dart';
-import 'package:prueba_inlaze/domain/models/search_model.dart';
-import 'package:prueba_inlaze/repositories/books_repository.dart';
+import 'package:prueba_data_center/domain/models/book_model.dart';
+import 'package:prueba_data_center/domain/models/search_model.dart';
+import 'package:prueba_data_center/repositories/books_repository.dart';
 
 import '../../domain/database/inlaze_db.dart';
 

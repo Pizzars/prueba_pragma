@@ -1,4 +1,4 @@
-import 'package:prueba_inlaze/domain/models/book_model.dart';
+import 'package:prueba_data_center/domain/models/book_model.dart';
 
 import '../services/api_service.dart';
 

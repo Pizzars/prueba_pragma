@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:prueba_inlaze/config/config.dart';
-import 'package:prueba_inlaze/presentation/blocs/blocs.dart';
-import 'package:prueba_inlaze/presentation/screens/home/widgets/books_view.dart';
-import 'package:prueba_inlaze/presentation/screens/home/widgets/search_view.dart';
-import 'package:prueba_inlaze/presentation/screens/widgets/base_screen.dart';
-import 'package:prueba_inlaze/presentation/screens/widgets/buttons/button_app.dart';
-import 'package:prueba_inlaze/presentation/screens/widgets/space_app.dart';
-import 'package:prueba_inlaze/presentation/screens/widgets/texts/TextApp.dart';
-import 'package:prueba_inlaze/presentation/screens/widgets/texts/title_small_app.dart';
+import 'package:prueba_data_center/config/config.dart';
+import 'package:prueba_data_center/presentation/blocs/blocs.dart';
+import 'package:prueba_data_center/presentation/blocs/tasks/tasks_cubit.dart';
+import 'package:prueba_data_center/presentation/screens/home/widgets/create_task_view.dart';
+import 'package:prueba_data_center/presentation/screens/home/widgets/tasks_view.dart';
+import 'package:prueba_data_center/presentation/screens/widgets/base_screen.dart';
+import 'package:prueba_data_center/presentation/screens/widgets/space_app.dart';
+import 'package:prueba_data_center/presentation/screens/widgets/texts/title_small_app.dart';
 
 import '../../../config/helpers/hero_tags.dart';
 
@@ -40,12 +39,14 @@ class HomeScreen extends StatelessWidget {
                 width: 40,
                 child: TextButton(
                   onPressed: (){
-                    context.read<LoginCubit>().signOut();
+                    showDialog(context: context, builder: (_) {
+                      return const CreateTaskView();
+                    });
                   },
                   style: TextButton.styleFrom(padding: PaddingApp.zero),
                   child: const SizedBox(
                     width: double.infinity,
-                    child: Icon(Icons.exit_to_app, color: ColorsApp.textColor ),
+                    child: Icon(Icons.add, color: ColorsApp.textColor ),
                   ),
                 ),
               )
@@ -66,7 +67,7 @@ class _HomeScreenView extends StatelessWidget {
   Widget build(BuildContext context) {
 
     Future<bool> callData() async {
-      context.read<BooksCubit>().getInitialData();
+      context.read<TasksCubit>().getInitialData();
       return true;
     }
 
@@ -74,7 +75,7 @@ class _HomeScreenView extends StatelessWidget {
       child: FutureBuilder(
         future: callData(),
         builder: (_, __) {
-          return BlocBuilder<BooksCubit, BooksState>(
+          return BlocBuilder<TasksCubit, TasksState>(
             builder: (context, state){
               getView(){
                 if(state.load){
@@ -82,23 +83,23 @@ class _HomeScreenView extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   );
                 }
-                if(state.error != null){
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(Icons.search_off, color: ColorsApp.primary, size: 50,),
-                      const SpaceApp(space: 2,),
-                      TitleSmall(text: state.error!),
-                      const SpaceApp(space: 2,),
-                      ButtonApp(text: "Volver a intentar", onPressed: (){
-                        context.read<BooksCubit>().setError(null, reset: true);
-                      })
-                    ],
-                  );
-                }
-                final books = state.books ?? state.news ?? [];
-                if(books.isEmpty){
+                // if(state.error != null){
+                //   return Column(
+                //     crossAxisAlignment: CrossAxisAlignment.center,
+                //     mainAxisAlignment: MainAxisAlignment.center,
+                //     children: [
+                //       const Icon(Icons.search_off, color: ColorsApp.primary, size: 50,),
+                //       const SpaceApp(space: 2,),
+                //       TitleSmall(text: state.error!),
+                //       const SpaceApp(space: 2,),
+                //       ButtonApp(text: "Volver a intentar", onPressed: (){
+                //         context.read<BooksCubit>().setError(null, reset: true);
+                //       })
+                //     ],
+                //   );
+                // }
+                final tasks = state.tasks ?? [];
+                if(tasks.isEmpty){
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -110,38 +111,12 @@ class _HomeScreenView extends StatelessWidget {
                   );
                 }
 
-                return const BooksView();
+                return const TasksView();
               }
 
               return Column(
                 children: [
-                  Hero(
-                    tag: HeroTags.search,
-                    child: TextButton(
-                      style: TextButton.styleFrom(padding: PaddingApp.zero),
-                      onPressed: (){
-                        showDialog(context: context, builder: (_){
-                          return const SearchView();
-                        });
-                      },
-                      child: Container(
-                        padding: PaddingApp.widget,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadiusApp.widget,
-                          color: ColorsApp.textColor.withOpacity(0.3),
-                        ),
-                        alignment: Alignment.center,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            TextApp(text: state.search ?? "Buscar"),
-                            const Icon(Icons.search, color: ColorsApp.textColor, size: 16,)
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Flexible(child: getView() ),
+                  Expanded(child: getView() ),
                 ],
               );
             },

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:prueba_inlaze/presentation/blocs/blocs.dart';
-import 'package:prueba_inlaze/presentation/blocs/service_locator.dart';
+import 'package:prueba_data_center/presentation/blocs/blocs.dart';
+import 'package:prueba_data_center/presentation/blocs/service_locator.dart';
 
 import 'config/theme/app_theme.dart';
 
@@ -22,6 +22,7 @@ class BlocsProviders extends StatelessWidget {
         BlocProvider(create: (context) => getIt<SignupCubit>(),),
         BlocProvider(create: (context) => getIt<LoginCubit>(),),
         BlocProvider(create: (context) => getIt<BooksCubit>(),),
+        BlocProvider(create: (context) => getIt<TasksCubit>(),),
       ],
       child: const MyApp(),
     );

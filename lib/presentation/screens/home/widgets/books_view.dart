@@ -2,9 +2,9 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:prueba_inlaze/config/config.dart';
-import 'package:prueba_inlaze/presentation/screens/widgets/space_app.dart';
-import 'package:prueba_inlaze/presentation/screens/widgets/texts/title_small_app.dart';
+import 'package:prueba_data_center/config/config.dart';
+import 'package:prueba_data_center/presentation/screens/widgets/space_app.dart';
+import 'package:prueba_data_center/presentation/screens/widgets/texts/title_small_app.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../blocs/books/books_cubit.dart';

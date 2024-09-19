@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:prueba_inlaze/presentation/screens/auth/signup_screen.dart';
-import 'package:prueba_inlaze/presentation/screens/splash/splash_screen.dart';
+import 'package:prueba_data_center/presentation/screens/auth/signup_screen.dart';
+import 'package:prueba_data_center/presentation/screens/splash/splash_screen.dart';
 import '../../presentation/screens/screens.dart';
 
 class Routes {

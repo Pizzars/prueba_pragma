@@ -3,10 +3,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:prueba_inlaze/presentation/blocs/blocs.dart';
-import 'package:prueba_inlaze/presentation/screens/widgets/buttons/button_app.dart';
-import 'package:prueba_inlaze/presentation/screens/widgets/space_app.dart';
-import 'package:prueba_inlaze/presentation/screens/widgets/texts/title_small_app.dart';
+import 'package:prueba_data_center/presentation/blocs/blocs.dart';
+import 'package:prueba_data_center/presentation/screens/widgets/buttons/button_app.dart';
+import 'package:prueba_data_center/presentation/screens/widgets/space_app.dart';
+import 'package:prueba_data_center/presentation/screens/widgets/texts/title_small_app.dart';
 
 import '../../../../config/helpers/hero_tags.dart';
 import '../../../../config/helpers/styles_app.dart';

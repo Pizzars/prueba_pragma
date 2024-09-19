@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class ColorsApp {
-  static const Color primary = Color.fromRGBO(249, 217, 35, 1);
-  static const Color secondary = Color.fromRGBO(30, 41, 59, 1);
-  static const Color tertiary = Colors.black;
+  static const Color primary = Color.fromRGBO(0, 67, 145, 1);
+  static const Color secondary = Color.fromRGBO(51, 178, 53, 1);
+  static const Color tertiary = Colors.white;
 
-  static const Color textColor = Colors.white;
+  static const Color textColor = Colors.black;
 
 }
 

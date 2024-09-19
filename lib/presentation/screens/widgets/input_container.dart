@@ -54,7 +54,7 @@ class _InputContainerState extends State<InputContainer> {
           height: widget.multiLine ? 120 : null ,
           decoration: BoxDecoration(
             borderRadius: BorderRadiusApp.widget,
-            color: ColorsApp.textColor.withOpacity(0.3),
+            color: ColorsApp.tertiary,
             border: widget.border
           ),
           child: TextField(

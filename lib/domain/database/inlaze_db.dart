@@ -1,12 +1,14 @@
-import 'package:prueba_inlaze/domain/database/database_service.dart';
-import 'package:prueba_inlaze/domain/models/search_model.dart';
-import 'package:prueba_inlaze/domain/models/user_model.dart';
-import 'package:prueba_inlaze/services/connectivity.dart';
+import 'package:prueba_data_center/domain/database/database_service.dart';
+import 'package:prueba_data_center/domain/models/search_model.dart';
+import 'package:prueba_data_center/domain/models/task_model.dart';
+import 'package:prueba_data_center/domain/models/user_model.dart';
+import 'package:prueba_data_center/services/connectivity.dart';
 import 'package:sqflite/sqflite.dart';
 
 class InlazeDB {
   final tableUsers = 'users';
   final tableSearches = 'searches';
+  final tableTasks = 'tasks';
 
   Future<void> createTable(Database database) async {
     await database.execute("""CREATE TABLE IF NOT EXISTS $tableUsers (
@@ -26,6 +28,16 @@ class InlazeDB {
     "updated_at" INTEGER,
     PRIMARY KEY("id" AUTOINCREMENT)
     );""");
+
+    await database.execute("""CREATE TABLE IF NOT EXISTS $tableTasks (
+    "id" INTEGER NOT NULL,
+    "name" TEXT NOT NULL,
+    "checked" INTEGER NOT NULL DEFAULT 0,
+    "created_at" INTEGER NOT NULL DEFAULT 1,
+    "updated_at" INTEGER,
+    PRIMARY KEY("id" AUTOINCREMENT)
+    );""");
+
   }
 
   Future<int> createUser({ required String name, required String user, required String password }) async {
@@ -44,6 +56,46 @@ class InlazeDB {
     return await database.rawInsert(
         '''INSERT INTO $tableSearches (search, created_at) VALUES (?,?)''',
         [search, DateTime.now().millisecondsSinceEpoch]
+    );
+  }
+
+  Future<int> createTask({ required String name }) async {
+    await checkConnection();
+    final database = await DatabaseService().database;
+    return await database.rawInsert(
+        '''INSERT INTO $tableTasks (name, created_at) VALUES (?,?)''',
+        [name, DateTime.now().millisecondsSinceEpoch]
+    );
+  }
+
+  Future<int> updateTask({required int id, String? name, bool? checked}) async {
+    await checkConnection();
+    final database = await DatabaseService().database;
+
+    // Construcción dinámica del query según los valores proporcionados
+    List<Object?> updateFields = [];
+    String setClause = '';
+
+    if (name != null) {
+      setClause += 'name = ?';
+      updateFields.add(name);
+    }
+
+    if (checked != null) {
+      if (setClause.isNotEmpty) {
+        setClause += ', '; // Si ya hay un campo anterior, agregamos una coma
+      }
+      setClause += 'checked = ?';
+      updateFields.add(checked ? 1 : 0); // Convertimos el booleano a 1 o 0
+    }
+
+    // Agregamos el ID al final de los valores
+    updateFields.add(id);
+
+    // Actualizamos la tarea con los campos que han cambiado
+    return await database.rawUpdate(
+        '''UPDATE $tableTasks SET $setClause WHERE id = ?''',
+        updateFields
     );
   }
 
@@ -119,6 +171,17 @@ class InlazeDB {
   Future<void> deleteSearch(int id) async {
     await checkConnection();
     await _delete(tableSearches, id);
+  }
+
+  Future<List<TaskModel>> getAllTasks() async {
+    await checkConnection();
+    final query = await _queryAll(tableTasks);
+    return query.map((e) => TaskModel.fromSql(e)).toList();
+  }
+
+  Future<void> deleteTask(int id) async {
+    await checkConnection();
+    await _delete(tableTasks, id);
   }
 
 }

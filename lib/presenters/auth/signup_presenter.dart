@@ -1,4 +1,4 @@
-import 'package:prueba_inlaze/domain/models/user_model.dart';
+import 'package:prueba_data_center/domain/models/user_model.dart';
 
 import '../../domain/database/inlaze_db.dart';
 

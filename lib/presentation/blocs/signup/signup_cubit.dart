@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:prueba_inlaze/config/config.dart';
-import 'package:prueba_inlaze/presenters/auth/signup_presenter.dart';
+import 'package:prueba_data_center/config/config.dart';
+import 'package:prueba_data_center/presenters/auth/signup_presenter.dart';
 
 import '../../../data/user_preferences.dart';
 import '../../../domain/models/user_model.dart';

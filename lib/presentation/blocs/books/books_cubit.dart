@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:prueba_inlaze/domain/models/book_model.dart';
-import 'package:prueba_inlaze/domain/models/search_model.dart';
+import 'package:prueba_data_center/domain/models/book_model.dart';
+import 'package:prueba_data_center/domain/models/search_model.dart';
 
 import '../../../presenters/books/books_presenter.dart';
 
