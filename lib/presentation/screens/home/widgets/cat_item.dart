@@ -53,18 +53,18 @@ class _CatItemState extends State<CatItem> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               TitleSmall(text: widget.cat.name, color: ColorsApp.primary,),
-              TextApp(text: 'Origen: ${widget.cat.origin}', color: ColorsApp.textColor.withOpacity(0.5),),
-              TextApp(text: 'Inteligencia: ${widget.cat.intelligence}', color: ColorsApp.textColor,),
+              TextApp(text: 'Origin: ${widget.cat.origin}', color: ColorsApp.textColor.withOpacity(0.5),),
+              TextApp(text: 'intelligence: ${widget.cat.intelligence}', color: ColorsApp.textColor,),
             ],
           )),
           SizedBox(
-            width: 60,
+            width: 62,
             child: TextButton(
               onPressed: (){
                 Navigator.push(context, MaterialPageRoute(builder: (_)=>CatDetailScreen(cat: widget.cat)));
               },
               style: TextButton.styleFrom(padding: PaddingApp.zero, ),
-              child: TextApp(text: "Ver más", color: ColorsApp.primary.withOpacity(0.7),),
+              child: TextApp(text: "See more", color: ColorsApp.primary.withOpacity(0.7),),
             ),
           )
         ],

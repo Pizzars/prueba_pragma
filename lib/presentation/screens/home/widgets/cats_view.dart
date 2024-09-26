@@ -33,7 +33,7 @@ class _CatsViewState extends State<CatsView> {
             height: double.infinity,
             child: Column(
               children: [
-                InputContainer(label: "Buscar", hintText: "Buscar", search: true, controller: controller, onChanged: (v){
+                InputContainer(label: "Search", hintText: "Search", search: true, controller: controller, onChanged: (v){
                   setState(() {});
                 },),
                 const SizedBox(height: 16,),
