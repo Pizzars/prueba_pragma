@@ -19,14 +19,14 @@ class _SplashScreenState extends State<SplashScreen> {
 
     Future.delayed(Duration.zero, () {
       setState(() {
-        size = 80;
+        size = 60;
       });}
     );
 
     // final user = await getUserPreferences();
     // final goHome = user != null;
 
-    Future.delayed(const Duration(seconds: 1), (){
+    Future.delayed(const Duration(seconds: 5), (){
       // context.replace(goHome ? Routes.home : Routes.login);
       context.replace(Routes.home);
     });
