@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:prueba_data_center/config/config.dart';
-import 'package:prueba_data_center/presentation/blocs/blocs.dart';
-import 'package:prueba_data_center/presentation/screens/widgets/base_screen.dart';
-import 'package:prueba_data_center/presentation/screens/widgets/buttons/button_app.dart';
-import 'package:prueba_data_center/presentation/screens/widgets/buttons/button_outline_app.dart';
-import 'package:prueba_data_center/presentation/screens/widgets/input_container.dart';
-import 'package:prueba_data_center/presentation/screens/widgets/space_app.dart';
-import 'package:prueba_data_center/presentation/screens/widgets/texts/title_app.dart';
-
+import 'package:prueba_pragma/config/config.dart';
+import 'package:prueba_pragma/presentation/screens/widgets/base_screen.dart';
+import 'package:prueba_pragma/presentation/screens/widgets/input_container.dart';
+import 'package:prueba_pragma/presentation/screens/widgets/space_app.dart';
+import 'package:prueba_pragma/presentation/screens/widgets/texts/title_app.dart';
 import '../../../config/helpers/hero_tags.dart';
+
+// import 'package:go_router/go_router.dart';
+// import 'package:flutter_bloc/flutter_bloc.dart';
+// import 'package:prueba_pragma/presentation/blocs/blocs.dart';
+// import 'package:prueba_pragma/presentation/screens/widgets/buttons/button_app.dart';
+// import 'package:prueba_pragma/presentation/screens/widgets/buttons/button_outline_app.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -65,33 +65,33 @@ class _SignUpScreenView extends StatelessWidget {
                 obscureText: true,
                 controller: password,
               ),
-              BlocBuilder<SignupCubit, SignupState>(
-                builder: (context, state){
-                  return Column(
-                    children: [
-                      if(state.error != null)
-                        const SpaceApp(),
-                      if(state.error != null)
-                        Text(state.error!, style: const TextStyle(color: Colors.red),),
-                      const SpaceApp(space: 2,),
-                      if(state.load)
-                        const CircularProgressIndicator(),
-                      if(!state.load)
-                        ButtonApp(text: "Crear Cuenta", onPressed: (){
-                          if(name.text.isEmpty || user.text.isEmpty || password.text.isEmpty){
-                            context.read<SignupCubit>().setError("Debe completar todos los campos");
-                            return;
-                          }
-                          context.read<SignupCubit>().createUser(name: name.text, user: user.text, password: password.text);
-                        }),
-                      if(!state.load)
-                        const SpaceApp(),
-                      if(!state.load)
-                        ButtonOutlineApp(text: "Ya tengo cuenta", onPressed: () => context.pop()),
-                    ],
-                  );
-                },
-              ),
+              // BlocBuilder<SignupCubit, SignupState>(
+              //   builder: (context, state){
+              //     return Column(
+              //       children: [
+              //         if(state.error != null)
+              //           const SpaceApp(),
+              //         if(state.error != null)
+              //           Text(state.error!, style: const TextStyle(color: Colors.red),),
+              //         const SpaceApp(space: 2,),
+              //         if(state.load)
+              //           const CircularProgressIndicator(),
+              //         if(!state.load)
+              //           ButtonApp(text: "Crear Cuenta", onPressed: (){
+              //             if(name.text.isEmpty || user.text.isEmpty || password.text.isEmpty){
+              //               context.read<SignupCubit>().setError("Debe completar todos los campos");
+              //               return;
+              //             }
+              //             context.read<SignupCubit>().createUser(name: name.text, user: user.text, password: password.text);
+              //           }),
+              //         if(!state.load)
+              //           const SpaceApp(),
+              //         if(!state.load)
+              //           ButtonOutlineApp(text: "Ya tengo cuenta", onPressed: () => context.pop()),
+              //       ],
+              //     );
+              //   },
+              // ),
             ],
           ),
         ),

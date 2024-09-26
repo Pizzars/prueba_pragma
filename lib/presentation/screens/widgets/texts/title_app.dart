@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:prueba_data_center/config/helpers/styles_app.dart';
+import 'package:prueba_pragma/config/helpers/styles_app.dart';
 
 class TitleApp extends StatelessWidget {
 

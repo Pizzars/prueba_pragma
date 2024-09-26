@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:prueba_data_center/config/config.dart';
-import 'package:prueba_data_center/config/helpers/hero_tags.dart';
-import 'package:prueba_data_center/data/user_preferences.dart';
+import 'package:prueba_pragma/config/config.dart';
+import 'package:prueba_pragma/config/helpers/hero_tags.dart';
+// import 'package:prueba_pragma/data/user_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -23,12 +23,12 @@ class _SplashScreenState extends State<SplashScreen> {
       });}
     );
 
-    final user = await getUserPreferences();
-    final goHome = user != null;
+    // final user = await getUserPreferences();
+    // final goHome = user != null;
 
     Future.delayed(const Duration(seconds: 1), (){
       // context.replace(goHome ? Routes.home : Routes.login);
-      context.replace(goHome ? Routes.home : Routes.home);
+      context.replace(Routes.home);
     });
   }
 

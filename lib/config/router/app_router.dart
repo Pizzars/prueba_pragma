@@ -1,7 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:prueba_data_center/presentation/screens/auth/signup_screen.dart';
-import 'package:prueba_data_center/presentation/screens/splash/splash_screen.dart';
+import 'package:prueba_pragma/presentation/screens/auth/signup_screen.dart';
+import 'package:prueba_pragma/presentation/screens/home/cat_detail_screen.dart';
+import 'package:prueba_pragma/presentation/screens/splash/splash_screen.dart';
 import '../../presentation/screens/screens.dart';
 
 class Routes {
@@ -15,6 +16,8 @@ class Routes {
   static const String four = '/guest-bloc';
   static const String five = '/pokemon-bloc';
   static const String siz = '/blocs-with-blocs';
+
+  static const String catDetails = '/catDetail';
 }
 
 final _appRouter = GoRouter(

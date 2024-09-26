@@ -14,6 +14,7 @@ class InputContainer extends StatefulWidget {
   final bool typeNumber;
   final bool search;
   final Function(String?)? onSearch;
+  final Function(String)? onChanged;
 
   const InputContainer({
     Key? key,
@@ -27,6 +28,7 @@ class InputContainer extends StatefulWidget {
     this.typeNumber = false,
     this.search = false,
     this.onSearch,
+    this.onChanged,
   }) : super(key: key);
 
   @override
@@ -54,7 +56,7 @@ class _InputContainerState extends State<InputContainer> {
           height: widget.multiLine ? 120 : null ,
           decoration: BoxDecoration(
             borderRadius: BorderRadiusApp.widget,
-            color: ColorsApp.tertiary,
+            color: ColorsApp.secondary,
             border: widget.border
           ),
           child: TextField(
@@ -69,6 +71,7 @@ class _InputContainerState extends State<InputContainer> {
                 widget.onSearch!(val);
               }
             },
+            onChanged: widget.onChanged,
             keyboardType: widget.typeNumber ? TextInputType.number : widget.obscureText
                 ? TextInputType.text
                 : TextInputType.emailAddress,

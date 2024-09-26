@@ -1,17 +1,25 @@
 import 'package:dio/dio.dart';
-import 'package:prueba_data_center/services/connectivity.dart';
+import 'package:prueba_pragma/services/connectivity.dart';
 
 class ApiService {
 
-  static const path = "https://api.itbook.store/1.0/";
+  static const path = "https://api.thecatapi.com/v1/";
+  static const apiKey = "live_99Qe4Ppj34NdplyLW67xCV7Ds0oSLKGgcWWYnSzMJY9C0QOu0HUR4azYxWkyW2nr";
 
   final Dio _dio = Dio();
 
-  Future<dynamic> getData(String route) async {
+  String setApiKey(bool addApiKey) {
+    if(addApiKey) {
+      return 'api_key=$apiKey';
+    }
+    return '';
+  }
+
+  Future<dynamic> getData(String route, {bool addApiKey = false}) async {
     try {
       await checkConnection();
       // Realiza la solicitud GET
-      Response response = await _dio.get('$path$route');
+      Response response = await _dio.get('$path$route${setApiKey(addApiKey)}');
 
       // Verifica si la solicitud fue exitosa (código de estado 200)
       if (response.statusCode == 200) {

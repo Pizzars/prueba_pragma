@@ -1,7 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
-import 'inlaze_db.dart';
+import 'pragma_db.dart';
 
 class DatabaseService {
   Database? _database;
@@ -32,6 +32,6 @@ class DatabaseService {
   }
 
   Future<void> create(Database database, int version) async =>
-      await InlazeDB().createTable(database);
+      await PragmaDB().createTable(database);
 
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:prueba_data_center/presentation/screens/widgets/texts/title_small_app.dart';
+import 'package:prueba_pragma/presentation/screens/widgets/texts/title_small_app.dart';
 
 import '../../../../config/helpers/styles_app.dart';
 

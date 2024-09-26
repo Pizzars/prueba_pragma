@@ -1,11 +1,8 @@
-import 'package:prueba_data_center/domain/database/database_service.dart';
-import 'package:prueba_data_center/domain/models/search_model.dart';
-import 'package:prueba_data_center/domain/models/task_model.dart';
-import 'package:prueba_data_center/domain/models/user_model.dart';
-import 'package:prueba_data_center/services/connectivity.dart';
+import 'package:prueba_pragma/domain/database/database_service.dart';
+import 'package:prueba_pragma/services/connectivity.dart';
 import 'package:sqflite/sqflite.dart';
 
-class InlazeDB {
+class PragmaDB {
   final tableUsers = 'users';
   final tableSearches = 'searches';
   final tableTasks = 'tasks';
@@ -124,64 +121,64 @@ class InlazeDB {
     );
   }
 
-  Future<void> deleteUser(int id) async {
-    await checkConnection();
-    await _delete(tableUsers, id);
-  }
-
-  Future<List<UserModel>> getAllUsers() async {
-    await checkConnection();
-    final query = await _queryAll(tableUsers);
-    return query.map((e) => UserModel.fromSql(e)).toList();
-  }
-
-  Future<UserModel?> getUserById({required int id}) async {
-    await checkConnection();
-    final query = await _queryById(tableUsers, id);
-    if(query == null) return null;
-    return UserModel.fromSql(query);
-  }
-
-  Future<UserModel?> getUserLogin({required String user, required String password}) async {
-    await checkConnection();
-    final database = await DatabaseService().database;
-    final query = await database.rawQuery(
-        '''SELECT * from $tableUsers WHERE user = ? AND password = ? ''', [user, password]
-    );
-    if(query.isEmpty) return null;
-    return UserModel.fromSql(query.first);
-  }
-
-  Future<UserModel?> getUserByUsername({required String user}) async {
-    await checkConnection();
-    final database = await DatabaseService().database;
-    final query = await database.rawQuery(
-        '''SELECT * from $tableUsers WHERE user = ? ''', [user]
-    );
-    if(query.isEmpty) return null;
-    return UserModel.fromSql(query.first);
-  }
-
-  Future<List<SearchModel>> getAllSearches() async {
-    await checkConnection();
-    final query = await _queryAll(tableSearches);
-    return query.map((e) => SearchModel.fromSql(e)).toList();
-  }
-
-  Future<void> deleteSearch(int id) async {
-    await checkConnection();
-    await _delete(tableSearches, id);
-  }
-
-  Future<List<TaskModel>> getAllTasks() async {
-    await checkConnection();
-    final query = await _queryAll(tableTasks);
-    return query.map((e) => TaskModel.fromSql(e)).toList();
-  }
-
-  Future<void> deleteTask(int id) async {
-    await checkConnection();
-    await _delete(tableTasks, id);
-  }
+  // Future<void> deleteUser(int id) async {
+  //   await checkConnection();
+  //   await _delete(tableUsers, id);
+  // }
+  //
+  // Future<List<UserModel>> getAllUsers() async {
+  //   await checkConnection();
+  //   final query = await _queryAll(tableUsers);
+  //   return query.map((e) => UserModel.fromSql(e)).toList();
+  // }
+  //
+  // Future<UserModel?> getUserById({required int id}) async {
+  //   await checkConnection();
+  //   final query = await _queryById(tableUsers, id);
+  //   if(query == null) return null;
+  //   return UserModel.fromSql(query);
+  // }
+  //
+  // Future<UserModel?> getUserLogin({required String user, required String password}) async {
+  //   await checkConnection();
+  //   final database = await DatabaseService().database;
+  //   final query = await database.rawQuery(
+  //       '''SELECT * from $tableUsers WHERE user = ? AND password = ? ''', [user, password]
+  //   );
+  //   if(query.isEmpty) return null;
+  //   return UserModel.fromSql(query.first);
+  // }
+  //
+  // Future<UserModel?> getUserByUsername({required String user}) async {
+  //   await checkConnection();
+  //   final database = await DatabaseService().database;
+  //   final query = await database.rawQuery(
+  //       '''SELECT * from $tableUsers WHERE user = ? ''', [user]
+  //   );
+  //   if(query.isEmpty) return null;
+  //   return UserModel.fromSql(query.first);
+  // }
+  //
+  // Future<List<SearchModel>> getAllSearches() async {
+  //   await checkConnection();
+  //   final query = await _queryAll(tableSearches);
+  //   return query.map((e) => SearchModel.fromSql(e)).toList();
+  // }
+  //
+  // Future<void> deleteSearch(int id) async {
+  //   await checkConnection();
+  //   await _delete(tableSearches, id);
+  // }
+  //
+  // Future<List<TaskModel>> getAllTasks() async {
+  //   await checkConnection();
+  //   final query = await _queryAll(tableTasks);
+  //   return query.map((e) => TaskModel.fromSql(e)).toList();
+  // }
+  //
+  // Future<void> deleteTask(int id) async {
+  //   await checkConnection();
+  //   await _delete(tableTasks, id);
+  // }
 
 }
