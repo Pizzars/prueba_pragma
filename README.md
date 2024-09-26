@@ -12,6 +12,7 @@ Esta aplicación consume una API para obtener las razas de los gatos. En cada el
 
 La estructura de carpetas de la aplicación es la siguiente:
 
+```bash
 lib
 ├── config
 │   ├── helpers              # Contains helper files with useful functionalities
@@ -30,7 +31,7 @@ lib
 ├── presenters                # Presenter layer components
 ├── repositories              # Data repositories
 └── services                  # API connection and verification files
-
+```
 
 ## Instrucciones de Instalación
 
